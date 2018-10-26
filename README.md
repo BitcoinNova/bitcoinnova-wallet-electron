@@ -1,4 +1,4 @@
-# Bitcoinnova Wallet Electron
+# Bitcoin Nova Wallet Electron
 ### Features:
 This wallet contains the basic functions required to manage your Bitcoin Nova assets:
 
