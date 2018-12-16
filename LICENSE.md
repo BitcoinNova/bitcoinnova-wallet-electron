@@ -1,6 +1,6 @@
 ISC License (ISC)
 
-Copyright (c) 2018, The TurtleCoin Developers
+Copyright (c) 2018, Macroshock, Rixombea, TurtleCoin Developers
 
 Copyright (c) 2018, Nicolas Alarcón, SpNote, Bitcoin Nova Developers
 
