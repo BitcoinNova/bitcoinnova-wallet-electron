@@ -1,8 +1,8 @@
 {
-  "name": "walletshell",
-  "productName": "WalletShell",
-  "description": "BitcoinNova GUI Wallet",
-  "version": "v0.3.4",
+  "name": "ElectronWallet",
+  "productName": "Electron Wallet",
+  "description": "Bitcoin Nova GUI Wallet",
+  "version": "v0.3.11",
   "homepage": "https://github.com/BitcoinNova/bitcoinnova-wallet-electron",
   "repository": "https://github.com/BitcoinNova/bitcoinnova-wallet-electron",
   "main": "main.js",
@@ -15,56 +15,77 @@
     "dist-mac": "./node_modules/.bin/electron-builder --x64 --mac -c.extraResources=./bin/osx/Bitcoinnova-service"
   },
   "keywords": [],
-  "author": "Nicolas Alarcón, SpNote, Bitcoin Nova Developers",
+  "author": "Bitcoin Nova Developers",
   "license": "ISC",
   "devDependencies": {
     "devtron": "^1.4.0",
-    "electron": "^3.0.3",
-    "electron-builder": "^20.28.4",
-    "jshint": "^2.9.6"
+    "electron": "^4.0.5",
+    "electron-builder": "^20.38.5",
+    "jshint": "^2.10.1"
   },
   "dependencies": {
-    "@trodi/electron-splashscreen": "^0.3.1",
+    "@trodi/electron-splashscreen": "^0.3.4",
+    "ag-grid-community": "^19.1.4",
+    "async": "^2.6.2",
     "csv-writer": "^1.2.0",
     "electron-log": "^2.2.17",
     "electron-store": "^2.0.0",
+    "fnv-plus": "^1.2.12",
+    "node-crypto-gcm": "^1.0.3",
     "qr-image": "^3.2.0",
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.7"
   },
   "build": {
-    "appId": "org.bitcoinnova.walletshell",
-    "productName": "WalletShell",
-    "copyright": "Copyright (c) 2018 Nicolas Alarcón, SpNote, Bitcoin Nova Developers",
+    "appId": "org.bitcoinnova.wallet.electron",
+    "copyright": "Copyright (c) 2019 Bitcoin Nova Developers",
     "directories": {
-      "app": ".",
       "output": "dist",
       "buildResources": "build"
     },
+    "files": [
+      "**/*",
+      "!**/docs/*",
+      "!**/bin/*",
+      "!**/service.log",
+      "!**/src/js/*.src.js",
+      "!**/src/js/extras/*.src.js",
+      "!**/js/*.src.js",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+    ],
     "linux": {
-      "artifactName": "${productName}-v${version}-${os}-${arch}.${ext}",
+      "artifactName": "${productName}-v${version}-${os}.${ext}",
       "target": [
-        "AppImage",
-        "tar.bz2"
+        "AppImage"
       ],
-      "maintainer": "spnote (@spainnote)",
+      "maintainer": "Sp_Note (@spnote)",
       "category": "Office",
-      "vendor": "BitcoinNova",
-      "synopsis": "BitcoinNova GUI Wallet"
+      "vendor": "Bitcoin Nova",
+      "synopsis": "Bitcoin Nova GUI Wallet"
     },
     "win": {
       "target": "nsis",
-      "publisherName": "BitcoinNova"
+      "publisherName": "Bitcoin Nova"
     },
     "nsis": {
       "artifactName": "${productName}-v${version}-${os}-${arch}-setup.${ext}",
-      "oneClick": false,
+      "oneClick": true,
       "perMachine": false
     },
     "mac": {
       "artifactName": "${productName}-v${version}-${os}-${arch}.${ext}",
       "category": "public.app-category.business",
-      "target": "tar.gz"
+      "target": "zip"
     }
   },
   "postinstall": "./node_modules/.bin/electron-builder install-app-deps"
