@@ -5,7 +5,7 @@
                 <h2 class="title">Settings</h2>
             </div>
             <div class="div-settings-input default-inputs">
-                <div class="input-wrap">
+                <div class="input-wrap" id="old-path-settings">
                     <h4 class="text-spaced input-required">Select path to Bitcoinnova-service executable file</h4>
                     <input tabindex="0" data-selection="openFile" data-targetinput="input-settings-path"
                         required="required" data-initial="service_bin" class="text-block path-input-button"
@@ -13,25 +13,8 @@
                         placeholder="Required, full path to the Bitcoinnova-service executable file..."
                         />
                     <button data-targetinput="input-settings-path" type="button" class="notabindex button-green path-input-button" id="button-settings-browse"><i class="fas fa-folder-open"></i></button>
+                    <span class="form-help">Only change this if you know what you're doing.</span>
                 </div>
-
-                <!-- <div class="input-wrap">
-                    <h4 class="text-spaced input-required">Daemon or public node address (IP or hostname)</h4>
-                    <input tabindex="0" required="required" data-initial="daemon_host"
-                        name="nodeAddress" class="text-block" id="input-settings-daemon-address"
-                        placeholder="Required, hostname or IP address of the BitcoinNova daemon or public node..."
-                        />
-                    <span id="daemonHostFormHelp" class="form-help">Type first few character(s) and select from public node list, or type to your own node address.</span>
-                </div>
-
-                <div class="input-wrap">
-                    <h4 class="text-spaced input-required">Daemon or public node port</h4>
-                    <input tabindex="0" type="number" required="required" data-initial="daemon_port"
-                        class="text-block" id="input-settings-daemon-port"
-                        placeholder="Required, port number of the BitcoinNova daemon or public node..." 
-                        />
-                    <span  id="daemonPortFormHelp" class="form-help"></span>
-                </div> -->
 
                 <div class="input-wrap">
                         <label class="checkbox-container">
@@ -46,6 +29,14 @@
                             <input tabindex="0" data-initial="tray_close" type="checkbox" id="checkbox-tray-close">
                             <span class="checkmark"></span>
                         </label>
+                </div>
+
+                <div class="input-wrap">
+                    <label class="checkbox-container">
+                        <h4 type="checkbox" data-initial="pubnodes_exclude_offline" class="text-spaced checkbox-text">Hide offline/non-responding remote nodes?</h4>
+                        <input tabindex="0" data-initial="pubnodes_exclude_offline" type="checkbox" id="pubnodes-exclude-offline">
+                        <span class="checkmark"></span>
+                    </label>
                 </div>
 
                 <div class="input-wrap">
