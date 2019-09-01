@@ -58,8 +58,7 @@ class ElectronWalletApi {
     }
     getFeeInfo() {
         return new Promise((resolve, reject) => {
-          //  this._sendRequest('getFeeInfo').then((result) => {
-            this._sendRequest('feeinfo').then((result) => {
+          this._sendRequest('getFeeInfo').then((result) => {
                 return resolve(result);
             }).catch((err) => {
                 return reject(err);
