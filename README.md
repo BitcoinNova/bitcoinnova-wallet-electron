@@ -1,5 +1,11 @@
 ## Bitcoin Nova Electron Wallet GUI.
 
+### Master Build Status
+
+![BitcoinNova Electron Wallet - Build MacOS](https://github.com/BitcoinNova/bitcoinnova-wallet-electron/workflows/BitcoinNova%20Electron%20Wallet%20-%20Build%20MacOS/badge.svg)
+![BitcoinNova Electron Wallet - Build Linux](https://github.com/BitcoinNova/bitcoinnova-wallet-electron/workflows/BitcoinNova%20Electron%20Wallet%20-%20Build%20Linux/badge.svg)
+![BitcoinNova Electron Wallet - Build Windows](https://github.com/BitcoinNova/bitcoinnova-wallet-electron/workflows/BitcoinNova%20Electron%20Wallet%20-%20Build%20Windows/badge.svg)
+
 ### Features:
 
 This wallet contains the basic functions required to mvanage your Bitcoin Nova assets:
