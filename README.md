@@ -1,9 +1,14 @@
 ## Bitcoin Nova Electron Wallet GUI.
 
+![Download Count](https://img.shields.io/github/downloads/BitcoinNova/bitcoinnova-wallet-electron/total.svg)
+![Open Issue Count](https://img.shields.io/github/issues/BitcoinNova/bitcoinnova-wallet-electron)
+![License](https://img.shields.io/github/license/BitcoinNova/bitcoinnova-wallet-electron)
+![Version](https://img.shields.io/github/v/release/BitcoinNova/bitcoinnova-wallet-electron)
+
 ### Master Build Status
 
-![BitcoinNova Electron Wallet - Build MacOS](https://github.com/BitcoinNova/bitcoinnova-wallet-electron/workflows/BitcoinNova%20Electron%20Wallet%20-%20Build%20MacOS/badge.svg)
 ![BitcoinNova Electron Wallet - Build Linux](https://github.com/BitcoinNova/bitcoinnova-wallet-electron/workflows/BitcoinNova%20Electron%20Wallet%20-%20Build%20Linux/badge.svg)
+![BitcoinNova Electron Wallet - Build MacOS](https://github.com/BitcoinNova/bitcoinnova-wallet-electron/workflows/BitcoinNova%20Electron%20Wallet%20-%20Build%20MacOS/badge.svg)
 ![BitcoinNova Electron Wallet - Build Windows](https://github.com/BitcoinNova/bitcoinnova-wallet-electron/workflows/BitcoinNova%20Electron%20Wallet%20-%20Build%20Windows/badge.svg)
 
 ### Features:
