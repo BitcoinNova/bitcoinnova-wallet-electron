@@ -1,9 +1,16 @@
+
+![image](https://github.com/BitcoinNova/brand/blob/master/logo/wordmark/bitcoinnova_wordmark_ubuntu.png)
+
 ## Bitcoin Nova Electron Wallet GUI.
 
 ![Download Count](https://img.shields.io/github/downloads/BitcoinNova/bitcoinnova-wallet-electron/total.svg)
 ![Open Issue Count](https://img.shields.io/github/issues/BitcoinNova/bitcoinnova-wallet-electron)
 ![License](https://img.shields.io/github/license/BitcoinNova/bitcoinnova-wallet-electron)
 ![Version](https://img.shields.io/github/v/release/BitcoinNova/bitcoinnova-wallet-electron)
+
+
+![image](http://i.imgur.com/0oGFWyi.png)
+
 
 ### Master Build Status
 
