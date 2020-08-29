@@ -1,0 +1,76 @@
+name: BitcoinNova Electron Wallet - Build Windows
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+  schedule:
+    - cron: '30 3 * * 0'
+    
+env:
+  TAG: ${{ github.ref }}
+
+jobs:
+  build:
+    name:  Build - ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          [Windows]
+        include:
+          - target: Windows
+            os: windows-latest
+          
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+
+      - name: Setup MSBuild.exe
+        if: matrix.os == 'windows-latest'
+        uses: warrenbuckley/Setup-MSBuild@v1
+
+      - name: Dependencies
+        run: yarn
+
+      - name: Build for Windows
+        if: matrix.target == 'Windows'
+        run: |
+          yarn dist-win
+      - name: Prepare to Deploy
+        id: before_deploy
+        shell: bash
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          if [[ "${TAG:5:4}" == "tags" ]]; then export TAG=${TAG:10}; else export TAG=${COMMIT_SHA}; fi
+          cd dist
+          rm *.blockmap
+          rm *.yml
+          7z a BitcoinNova-Electron-Wallet-${TAG}-${{ matrix.target }}.zip *.*
+          echo ::set-output name=artifact_name::BitcoinNova-Electron-Wallet-${TAG}-${{ matrix.target }}.zip
+          echo ::set-output name=file_name::BitcoinNova-Electron-Wallet-${TAG}-${{ matrix.target }}.zip
+                    
+       # Upload to GH Actions Artifacts
+      - name: Upload To GH Artifacts
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: ${{ steps.before_deploy.outputs.artifact_name }}
+          path: ./dist/
+                   
+      # Upload to GH Release
+
+      - name: Upload to GH Release
+        if: github.event_name == 'release'
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./dist/${{ steps.before_deploy.outputs.artifact_name }}
+          asset_name: ${{ steps.before_deploy.outputs.artifact_name }}
+          asset_content_type: application/zip

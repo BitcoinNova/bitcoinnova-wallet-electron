@@ -17,7 +17,7 @@ config.walletFileDefaultExt = 'wallet';
 config.walletServiceBinaryFilename = 'Bitcoinnova-service';
 
 // version on the bundled service (Bitcoinnova-service)
-config.walletServiceBinaryVersion = "v0.12.0";
+config.walletServiceBinaryVersion = "v0.18.2";
 
 // config file format supported by wallet service, possible values:
 // ini -->  for Bitcoinnova service (or its forks) version <= v0.8.3

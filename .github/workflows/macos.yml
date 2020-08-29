@@ -1,0 +1,76 @@
+name: BitcoinNova Electron Wallet - Build MacOS
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+  schedule:
+    - cron: '30 3 * * 0'
+    
+env:
+  TAG: ${{ github.ref }}
+
+jobs:
+  build:
+    name:  Build - ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          [MacOS]
+        include:
+          - target: MacOS
+            os: macos-latest
+          
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+
+      - name: Dependencies
+        run: yarn
+
+      - name: Build for MacOS
+        if: matrix.target == 'MacOS'
+        run: |
+          chmod +x ./bin/osx/Bitcoinnova-service
+          yarn dist-mac
+          
+      - name: Prepare to Deploy
+        id: before_deploy
+        shell: bash
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          if [[ "${TAG:5:4}" == "tags" ]]; then export TAG=${TAG:10}; else export TAG=${COMMIT_SHA}; fi
+          rm -rf ./dist/*.blockmap
+          rm -rf ./dist/*-unpacked
+          rm -rf ./dist/*.plist
+          rm -rf ./dist/mac
+          rm -rf ./dist/*.yml
+          cd dist
+          tar cvfz BitcoinNova-Electron-Wallet-${TAG}-${{ matrix.target }}.tar.gz *.*
+          echo ::set-output name=artifact_name::BitcoinNova-Electron-Wallet-${TAG}-${{ matrix.target }}.tar.gz
+          echo ::set-output name=file_name::BitcoinNova-Electron-Wallet-${TAG}-${{ matrix.target }}.tar.gz
+                    
+       # Upload to GH Actions Artifacts
+      - name: Upload To GH Artifacts
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: ${{ steps.before_deploy.outputs.artifact_name }}
+          path: ./dist/
+                   
+      # Upload to GH Release
+
+      - name: Upload to GH Release
+        if: github.event_name == 'release'
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./dist/${{ steps.before_deploy.outputs.artifact_name }}
+          asset_name: ${{ steps.before_deploy.outputs.artifact_name }}
+          asset_content_type: application/zip
